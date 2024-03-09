@@ -1,9 +1,10 @@
 import React, {useEffect} from 'react';
 
-import {StyleSheet, Text, View, Alert} from 'react-native';
+import {Alert} from 'react-native';
 
 import messaging from '@react-native-firebase/messaging';
 import {requestUserPermission} from './src/utils/notification';
+import {MyStackNavigation} from './src/routes/myStackNavigation';
 
 const App = () => {
   useEffect(() => {
@@ -18,13 +19,7 @@ const App = () => {
     return unsubscribe;
   }, []);
 
-  return (
-    <View>
-      <Text>Hello</Text>
-    </View>
-  );
+  return <MyStackNavigation />;
 };
-
-const styles = StyleSheet.create({});
 
 export default App;
