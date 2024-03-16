@@ -17,7 +17,7 @@ export const MyStackNavigation = () => {
   const buildDeepLinkFromNotificationData = (data: any): string | null => {
     const navigationId = data?.navigationId;
     if (!NAVIGATION_IDS.includes(navigationId)) {
-      console.warn('Unverified navigationId', navigationId);
+      console.log('Unverified navigationId', navigationId);
       return null;
     }
     if (navigationId === 'home') {

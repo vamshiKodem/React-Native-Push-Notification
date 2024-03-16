@@ -1,10 +1,11 @@
 import {Text, View, Button} from 'react-native';
 import React from 'react';
-import {useNavigation} from '@react-navigation/native';
+import {ParamListBase, useNavigation} from '@react-navigation/native';
 import {Screens} from '../models/screens';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 export const Home = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
 
   return (
     <View>
