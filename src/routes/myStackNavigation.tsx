@@ -44,6 +44,7 @@ export const MyStackNavigation = () => {
         profile: Screens.PROFILE,
       },
     },
+
     async getInitialURL() {
       const url = await Linking.getInitialURL();
       if (typeof url === 'string') {
@@ -56,6 +57,7 @@ export const MyStackNavigation = () => {
         return deeplinkURL;
       }
     },
+
     subscribe(listener: (url: string) => void) {
       const onReceiveURL = ({url}: {url: string}) => listener(url);
 

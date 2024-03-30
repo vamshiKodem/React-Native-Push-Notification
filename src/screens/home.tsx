@@ -7,14 +7,14 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 export const Home = () => {
   const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
 
+  const onDetailsButtonPress = () => {
+    navigation.navigate(Screens.DETAILS);
+  };
+
   return (
     <View>
       <Text>Home Screen</Text>
-
-      <Button
-        title="Go to details screen"
-        onPress={() => navigation.navigate(Screens.DETAILS)}
-      />
+      <Button title="Go to details screen" onPress={onDetailsButtonPress} />
     </View>
   );
 };
