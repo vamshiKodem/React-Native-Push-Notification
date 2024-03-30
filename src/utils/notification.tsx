@@ -9,7 +9,6 @@ export async function requestUserPermission() {
     );
 
     if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-      console.log('i am here');
       getFCMToken();
     } else {
       console.log('error in permission');
@@ -21,7 +20,6 @@ export async function requestUserPermission() {
       authStatus === messaging.AuthorizationStatus.PROVISIONAL;
 
     if (enabled) {
-      console.log('Authorization status:', authStatus);
       getFCMToken();
     }
   }
