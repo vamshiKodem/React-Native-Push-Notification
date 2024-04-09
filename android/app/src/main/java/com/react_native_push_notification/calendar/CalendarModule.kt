@@ -1,4 +1,4 @@
-package com.react_native_push_notification
+package com.react_native_push_notification.calendar
 import android.util.Log
 import com.facebook.react.bridge.Callback
 import com.facebook.react.bridge.Promise
@@ -6,13 +6,15 @@ import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactContext
 import com.facebook.react.bridge.ReactContextBaseJavaModule
 import com.facebook.react.bridge.ReactMethod
-import com.facebook.react.bridge.WritableMap
-import com.facebook.react.bridge.Arguments
 import com.facebook.react.modules.core.DeviceEventManagerModule
-import com.th3rdwave.safeareacontext.getReactContext
+import com.facebook.react.module.annotations.ReactModule
 
+@ReactModule(name = "CalendarModule")
 class CalendarModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
-    override fun getName() = "CalendarModule"
+    override fun getName(): String {
+        return "CalendarModule"
+    }
+
     private var listenerCount = 0
     @ReactMethod
     fun createCalendarEvent(name: String, location: String, callback: Callback) {
