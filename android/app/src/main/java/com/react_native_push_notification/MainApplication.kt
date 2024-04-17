@@ -12,6 +12,7 @@ import com.facebook.react.defaults.DefaultReactNativeHost
 import com.facebook.react.flipper.ReactNativeFlipper
 import com.facebook.soloader.SoLoader
 import com.react_native_push_notification.calendar.CalendarModulePackage
+import com.react_native_push_notification.vpnStatusModule.VpnStatusModulePackage
 
 class MainApplication : Application(), ReactApplication {
 
@@ -22,6 +23,7 @@ class MainApplication : Application(), ReactApplication {
               // Packages that cannot be autolinked yet can be added manually here, for example:
               // add(MyReactNativePackage())
               add(CalendarModulePackage())
+              add(VpnStatusModulePackage())
             }
 
         override fun getJSMainModuleName(): String = "index"
