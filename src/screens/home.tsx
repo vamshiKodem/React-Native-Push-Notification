@@ -4,16 +4,18 @@ import {
   Button,
   NativeModules,
   NativeEventEmitter,
+  AppState,
 } from 'react-native';
-import React, {useEffect} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {ParamListBase, useNavigation} from '@react-navigation/native';
 import {Screens} from '../models/screens';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 export const Home = () => {
   const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
-  const {CalendarModule} = NativeModules;
+  const {CalendarModule, VpnStatusModule} = NativeModules;
   const emitter = new NativeEventEmitter();
+  const [vpnStatus, setVpnStatus] = useState(false);
 
   const onDetailsButtonPress = () => {
     navigation.navigate(Screens.DETAILS);
@@ -49,11 +51,35 @@ export const Home = () => {
     };
   }, []);
 
+  const getVpnStatus = useCallback(async () => {
+    try {
+      const status = await VpnStatusModule.isVpnConnected();
+      setVpnStatus(status);
+    } catch (e) {
+      console.log('error something is not working', e);
+    }
+  }, []);
+
+  useEffect(() => {
+    getVpnStatus();
+  }, [getVpnStatus]);
+
+  useEffect(() => {
+    const listner = AppState.addEventListener('change', async () => {
+      await getVpnStatus();
+    });
+
+    return () => {
+      listner.remove();
+    };
+  }, [getVpnStatus]);
+
   return (
     <View>
       <Text>Home Screen</Text>
       <Button title="Go to details screen" onPress={onDetailsButtonPress} />
-      <Button title="Clandar Module" onPress={onPressCalandarModulePromise} />
+      <Button title="Clandar Module" onPress={getVpnStatus} />
+      <Text>{vpnStatus ? 'VPN is connected' : 'VPN is not connected'}</Text>
     </View>
   );
 };
