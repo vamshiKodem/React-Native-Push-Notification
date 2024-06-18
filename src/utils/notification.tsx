@@ -29,7 +29,7 @@ const getFCMToken = async () => {
   try {
     await messaging().registerDeviceForRemoteMessages();
     const newToken = await messaging().getToken();
-    console.log(newToken);
+    console.log(newToken); // we need to store this token in server so that we can send notification
   } catch (error) {
     console.log('error during generating token', error);
   }
